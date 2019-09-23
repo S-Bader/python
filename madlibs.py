@@ -8,6 +8,6 @@ scream = input("Enter any sentence: ")
 action = input("Enter a verb: ")
 
 print("It was %s o\'clock when I heard a knock at the door." % time)
-print("I opened the door and there was a box full of %s with a note saying From Mr. %s." % (items, name.title()))
-print("Just as I closed the door I heard a scream %s." % scream.upper())
+print("I opened the door and there was a box full of %s with a note saying \"From Mr. %s.\"" % (items, name.title()))
+print("Just as I closed the door I heard a scream \"%s.\"" % scream.upper())
 print("I froze in place and all I could do was %s." % action)
