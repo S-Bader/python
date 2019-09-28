@@ -9,47 +9,75 @@ class Employee:
         self.employment_date = employment_date
 
     def get_working_years(self):
-        return date.today() - self.employment_date
+        return date.today().year - int(self.employment_date)
+
+    def __str__(self):
+        return "Name: %s, Age: %s, Salary: %s, Working Years: %s" % (self.name, self.age, self.salary, self.get_working_years())
 
 
 class Manager(Employee):
     def __init__(self, name, age, salary, employment_date, bonus_percentage):
-        self.name = name
-        self.age = age
-        self.salary = salary
-        self.employment_date = employment_date
+        super().__init__(name, age, salary, employment_date)
         self.bonus_percentage = bonus_percentage
 
-    def get_working_years(self):
-        return date.today() - self.employment_date
-
     def get_bonus(self):
-        return self.bonus_percentage * self.salary
+        return float(self.bonus_percentage) * float(self.salary)
+
+    def __str__(self):
+        return "Name: %s, Age: %s, Salary: %s, Working Years: %s, Bonus: %.3f" % (self.name, self.age, self.salary, self.get_working_years(), self.get_bonus())
 
 
 normal_employees = []
 
 managers = []
 
+print("Welcome to HR Pro")
+print()
+print("""
+Options:
+    1. Show Employees
+    2. Show Managers
+    3. Add An Employee
+    4. Add A Manager
+    5. Exit
+""")
 
-options = ["Show Employees", "Show Managers", "Add an Employee", "Add a Manager", "Exit"]
+choice = int(input("What would you like to do? "))
 
-print("Option:")
+while choice != 5:
+    if choice == 1:
+        for employee in normal_employees:
+            print(employee)
+    elif choice == 2:
+        for manager in managers:
+            print(manager)
+    elif choice == 3:
+        name = input("Employee Name: ")
+        age = input("Age: ")
+        salary =  input("Salary: ")
+        employment_date = input("Date of Employment: ")
+        employee = Employee(name, age, salary, employment_date)
+        normal_employees.append(employee)
+    elif choice == 4:
+        name = input("Manager Name: ")
+        age = input("Age: ")
+        salary =  input("Salary: ")
+        employment_date = input("Date of Employment: ")
+        bonus_percentage = input("Bonus: ")
+        manager = Manager(name, age, salary, employment_date, bonus_percentage)
+        managers.append(manager)
 
+    print("""
+    Options:
+        1. Show Employees
+        2. Show Managers
+        3. Add An Employee
+        4. Add A Manager
+        5. Exit
+    """)
 
-for option in options:
-    index = options.index(option) +1
-    print(index ,"- " + option)
+    choice = int(input("What would you like to do? "))
 
-user_option = int(input("What would you like to do? "))
-
-while user_option != 5:
-    if user_option == 1:
-        print(normal_employees)
-    elif user_option == 2:
-        print(managers)
-    elif user_option == 3:
-        
 
      
 
